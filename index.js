@@ -2,9 +2,6 @@ let speech = new SpeechSynthesisUtterance();
 let voices = [];
 let voiceSelect = document.querySelector("select");
 let textArea = document.querySelector("textarea");
-let canvas = document.getElementById("waveform");
-let ctx = canvas.getContext("2d");
-let isSpeaking = false;
 
 // Load available voices
 window.speechSynthesis.onvoiceschanged = () => {
