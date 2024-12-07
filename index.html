@@ -12,43 +12,47 @@
         <textarea placeholder="Write anything here ...."></textarea>
         <div class="row">
             <select></select>
-            <button>Listen</button>
-            <!-- <button id="translateButton">Translate</button> -->
+            <button id="listenButton">Listen</button>
         </div>
-        <!-- <canvas id="waveform" width="600" height="100"></canvas> -->
     </div>
-    <script src="index.js">let speech = new SpeechSynthesisUtterance();
-let voices = [];
-let voiceSelect = document.querySelector("select");
-let textArea = document.querySelector("textarea");
+    <script>
+        // Initialize speech synthesis
+        let speech = new SpeechSynthesisUtterance();
+        let voices = [];
+        const voiceSelect = document.querySelector("select");
+        const textArea = document.querySelector("textarea");
+        const listenButton = document.querySelector("#listenButton");
 
-// Load available voices
-window.speechSynthesis.onvoiceschanged = () => {
-    voices = window.speechSynthesis.getVoices();
-    speech.voice = voices[0];
+        // Load available voices
+        window.speechSynthesis.onvoiceschanged = () => {
+            voices = window.speechSynthesis.getVoices();
+            speech.voice = voices[0]; // Default voice
+            voices.forEach((voice, i) => {
+                let option = new Option(voice.name + " (" + voice.lang + ")", i);
+                voiceSelect.add(option);
+            });
+        };
 
-    voices.forEach((voice, i) => {
-        voiceSelect.options[i] = new Option(voice.name, i);
-    });
-};
+        // Change voice based on selection
+        voiceSelect.addEventListener("change", () => {
+            speech.voice = voices[voiceSelect.value];
+        });
 
-// Change voice when selected
-voiceSelect.addEventListener("change", () => {
-    speech.voice = voices[voiceSelect.value];
-});
+        // Speak the text when clicking the "Listen" button
+        listenButton.addEventListener("click", () => {
+            const text = textArea.value.trim();
+            if (text) {
+                speech.text = text;
+                window.speechSynthesis.speak(speech);
+            } else {
+                alert("Please enter some text to convert to speech.");
+            }
+        });
 
-// Speak the text
-document.querySelector("button").addEventListener("click", () => {
-    speech.text = textArea.value;
-    isSpeaking = true; // Set speaking state to true
-    drawWaveform(); // Start drawing the waveform
-    window.speechSynthesis.speak(speech);
-});
-
-
-// Handle speech synthesis errors
-speech.onerror = (event) => {
-    console.error('Speech synthesis error:', event.error);
-};</script>
+        // Handle speech synthesis errors
+        speech.onerror = (event) => {
+            console.error("Speech synthesis error:", event.error);
+        };
+    </script>
 </body>
 </html>
