@@ -47,7 +47,7 @@ git clone https://github.com/sahanac2004/Text_to_speech_Converter.git
 cd Text_to_speech_Converter
 ```
 
-### *2. Open the Application
+### 2. Open the Application
 
 -Open the index.html file in your web browser.
 -You can simply double-click the index.html file or open it through your browser's file menu.
