@@ -52,11 +52,11 @@ cd Text_to_speech_Converter
 -Open the index.html file in your web browser.
 -You can simply double-click the index.html file or open it through your browser's file menu.
 
-## *📖 How to Use
+## 📖 How to Use
 
 -Type or paste text into the textarea.
 -Select a voice from the dropdown menu.
 -Click the "Listen" button to hear the text spoken aloud.
 
-## *👥 Contributing
+## 👥 Contributing
 Contributions are welcome! If you have suggestions for improvements or new features, feel free to open an issue or submit a pull request.
